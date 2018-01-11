@@ -1,9 +1,11 @@
 from threading import Thread
 
+__author__ = "Mithun"
 
-def target(number, a):
+
+def target(number, arr):
     print("Appending {}".format(number))
-    a.append(number)
+    arr.append(number)
 
 
 if __name__ == "__main__":

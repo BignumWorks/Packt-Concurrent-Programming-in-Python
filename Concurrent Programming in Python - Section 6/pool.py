@@ -1,7 +1,9 @@
 import time
 import os
-from PIL import Image                                      # pip install pillow if not found
+from PIL import Image  # pip install pillow if not found
 from glob import glob
+
+__author__ = "Mithun"
 
 
 def create_thumbnail(image_file):
@@ -26,5 +28,4 @@ if __name__ == "__main__":
 
     end = time.time()
 
-    print("Total time taken is for thumbnail generation is {} seconds".format(end-start))
-
+    print("Total time taken is for thumbnail generation is {} seconds".format(end - start))

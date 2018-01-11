@@ -1,23 +1,24 @@
-from threading import Thread, RLock
+import urllib3
+from threading import Thread
 
 import time
 import random
 
-print_lock = RLock()
-class URLDownload(Thread):
+urllib3.disable_warnings()
 
-    def __init__(self, urlName, url):
+__author__ = "Mithun"
+
+
+class URLDownload(Thread):
+    def __init__(self, url_name, url):
         Thread.__init__(self)
         self.url = url
-        self.urlName = urlName
+        self.url_name = url_name
 
     def run(self):
         time.sleep(random.random())
-        print_lock.acquire()
-        print_lock.acquire()
-        print("Thread {} : URL: {}, URLName: {}. \r\n".format(self.name, self.url, self.urlName))
-        print_lock.release()
-        print_lock.release()
+
+        print("Thread {} : URL: {}, URLName: {}. \r\n".format(self.name, self.url, self.url_name))
 
 
 threads = []

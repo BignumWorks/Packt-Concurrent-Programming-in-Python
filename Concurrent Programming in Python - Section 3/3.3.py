@@ -2,8 +2,11 @@ import threading
 import random
 import time
 
+__author__ = "Mithun"
+
 operands = []
 event = threading.Event()
+
 
 class Producer(threading.Thread):
     def run(self):
@@ -14,14 +17,16 @@ class Producer(threading.Thread):
             event.set()
             time.sleep(random.random())
 
+
 class Consumer(threading.Thread):
     def run(self):
         while True:
             time.sleep(random.random())
             event.wait()
             (x, y) = operands.pop()
-            print("Product of ({}*{}) = {}".format(x, y, x*y))
+            print("Product of ({}*{}) = {}".format(x, y, x * y))
             event.clear()
+
 
 Producer().start()
 Consumer().start()

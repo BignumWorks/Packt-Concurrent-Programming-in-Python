@@ -1,26 +1,33 @@
-from multiprocessing import Process, Value
+from multiprocessing import Process, Value, Lock
 
-def increment(num):
+__author__ = "Mithun"
+
+
+def increment(num, lock):
     for _ in range(1000):
-        num.value = num.value + 1
+        with lock:
+            num.value = num.value + 1
 
 
-def decrement(num):
+def decrement(num, lock):
     for _ in range(1000):
-        num.value = num.value - 1
+        with lock:
+            num.value = num.value - 1
 
 
 if __name__ == "__main__":
     num = Value('i', 0)
     print(num.value)
-    p1 = Process(target=increment, args=(num,))
-    p2 = Process(target=decrement, args=(num,))
+
+    lock = Lock()
+
+    p1 = Process(target=increment, args=(num, lock))
+    p2 = Process(target=decrement, args=(num, lock))
 
     p1.start()
     p2.start()
 
     p1.join()
     p2.join()
+
     print(num.value)
-
-

@@ -4,6 +4,8 @@ import multiprocessing
 from PIL import Image  # pip install pillow if not found
 from glob import glob
 
+__author__ = "Mithun"
+
 
 def create_thumbnail(image_files):
     size = 128, 128
@@ -24,7 +26,7 @@ if __name__ == "__main__":
     processor_count = multiprocessing.cpu_count()
     print("Processor Count= {}".format(processor_count))
 
-    image_files = glob("/Users/mithun.lakshmanswamy/Downloads/happy-face/*.jpeg")
+    image_files = glob(r"C:\happy-face\happy*.jpeg")
     images_per_process = (int)(len(image_files) / processor_count) + 1
     processes = []
 

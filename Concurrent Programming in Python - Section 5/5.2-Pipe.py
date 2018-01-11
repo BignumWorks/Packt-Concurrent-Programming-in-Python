@@ -1,8 +1,8 @@
 import multiprocessing
 import random
-import time
 
 __author__ = "Mithun"
+
 
 class Producer(multiprocessing.Process):
     def __init__(self, conn):
@@ -16,17 +16,17 @@ class Producer(multiprocessing.Process):
             print("Process {} added: {}".format(self.name, (x, y)))
         self.conn.close()
 
+
 class Consumer(multiprocessing.Process):
     def __init__(self, conn):
         multiprocessing.Process.__init__(self)
-        self.conn = recv
+        self.conn = conn
 
     def run(self):
-        time.sleep(2)
         while True:
             try:
                 (x, y) = self.conn.recv()
-                print("Product of ({}*{}) = {}".format(x, y, x*y))
+                print("Product of ({}*{}) = {}".format(x, y, x * y))
             except EOFError:
                 print("No more data...")
                 break
@@ -40,9 +40,7 @@ if __name__ == "__main__":
     p = Producer(send)
     p.start()
 
-
     send.close()
 
     c = Consumer(recv)
     c.start()
-

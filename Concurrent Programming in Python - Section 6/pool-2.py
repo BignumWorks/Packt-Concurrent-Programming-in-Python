@@ -1,13 +1,14 @@
 import time
-import os, random
+import os
 import multiprocessing
 from PIL import Image  # pip install pillow if not found
 from glob import glob
 
+__author__ = "Mithun"
+
 
 def create_thumbnail(image_file):
     size = 128, 128
-    time.sleep(random.random())
 
     file_name, ext = os.path.splitext(image_file)
     image = Image.open(image_file)
@@ -26,7 +27,7 @@ if __name__ == "__main__":
     processor_count = multiprocessing.cpu_count()
     print("Processor Count= {}".format(processor_count))
 
-    image_files = glob("/Users/mithun.lakshmanswamy/Downloads/happy-face/*.jpeg")
+    image_files = glob(r"C:\happy-face\*.jpeg")
 
     start = time.time()
 

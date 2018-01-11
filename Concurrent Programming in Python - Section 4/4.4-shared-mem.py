@@ -1,9 +1,11 @@
 from multiprocessing import Process, Array
 
+__author__ = "Mithun"
 
-def target(number, a):
+
+def target(number, arr):
     print("Appending {}".format(number))
-    a[number] = number
+    arr[number] = number
 
 
 if __name__ == "__main__":

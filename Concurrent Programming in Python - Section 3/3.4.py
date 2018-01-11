@@ -3,7 +3,10 @@ import random
 import time
 import queue
 
+__author__ = "Mithun"
+
 q = queue.Queue()
+
 
 class Producer(threading.Thread):
     def run(self):
@@ -13,12 +16,13 @@ class Producer(threading.Thread):
             print("Thread {} added: {}".format(self.name, (x, y)))
             time.sleep(random.random())
 
+
 class Consumer(threading.Thread):
     def run(self):
         for i in range(10):
             time.sleep(random.random())
             (x, y) = q.get()
-            print("Product of ({}*{}) = {}".format(x, y, x*y))
+            print("Product of ({}*{}) = {}".format(x, y, x * y))
             q.task_done()
 
 
